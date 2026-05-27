@@ -1,19 +1,18 @@
 import { V1VolumeMount } from "@kubernetes/client-node";
 import { k8sCoreV1Api } from "./config.js";
 
-export async function  createPod(sandboxId){
+export async function createPod(sandboxId) {
     const podManifest = {
         apiVersion: 'v1',
         kind: 'Pod',
         metadata: {
             name: `sandbox-pod-${sandboxId}`,
             labels: {
-                app: 'sandbox',
                 sandboxId: sandboxId
             }
         },
         spec: {
-            volumes:[
+            volumes: [
                 {
                     name: 'workspace-volume',
                     emptyDir: {}
@@ -38,16 +37,16 @@ export async function  createPod(sandboxId){
                     imagePullPolicy: 'IfNotPresent',
                     ports: [
                         {
-                            containerPort: 5173 ,
-                            name:'http'           
+                            containerPort: 5173,
+                            name: 'http'
                         }
                     ],
-                    resources:{
+                    resources: {
                         limits: {
                             cpu: '500m',
                             memory: '256Mi'
                         },
-                        requests:{
+                        requests: {
                             cpu: '250m',
                             memory: '128Mi'
                         }
@@ -60,28 +59,28 @@ export async function  createPod(sandboxId){
                     ]
                 },
                 {
-                    image:'agent',
-                    name:'agent-container',
+                    image: 'agent',
+                    name: 'agent-container',
                     imagePullPolicy: 'IfNotPresent',
-                    ports:[
+                    ports: [
                         {
                             containerPort: 3000,
                             name: 'http'
                         }
                     ],
-                    resources:{
+                    resources: {
                         limits: {
                             cpu: '500m',
                             memory: '256Mi'
                         },
-                        requests:{
+                        requests: {
                             cpu: '250m',
                             memory: '128Mi'
                         }
                     },
                     volumeMounts: [
                         {
-                            name: 'workspace-volume',   
+                            name: 'workspace-volume',
                             mountPath: '/workspace'
                         }
                     ]

@@ -1,0 +1,100 @@
+.ws-header {
+  height: var(--header-h);
+  min-height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+}
+
+.ws-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #818cf8, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.ws-logo-icon {
+  -webkit-text-fill-color: initial;
+  font-size: 17px;
+}
+
+.ws-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border2);
+  margin: 0 2px;
+}
+
+.sandbox-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  padding: 3px 10px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 7px var(--green);
+  animation: blink 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.sandbox-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.ws-spacer { flex: 1; }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+  white-space: nowrap;
+}
+
+.header-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  background: rgba(99,102,241,0.08);
+}
+
+.header-btn.danger:hover {
+  border-color: var(--red);
+  color: #fda4af;
+  background: rgba(244,63,94,0.08);
+}

@@ -1,0 +1,111 @@
+.file-tree-panel {
+  width: var(--sidebar-w);
+  min-width: var(--sidebar-w);
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.file-tree-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.tree-state {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.tree-root {
+  padding: 2px 0;
+}
+
+/* ── Folders ───────────────────────────────── */
+.tree-folder-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.tree-folder {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--transition);
+}
+
+.tree-folder:hover { background: var(--surface2); }
+
+.folder-chevron {
+  font-size: 10px;
+  color: var(--text-muted);
+  width: 12px;
+  flex-shrink: 0;
+}
+
+.folder-icon { font-size: 13px; flex-shrink: 0; }
+
+.folder-name {
+  font-size: 12px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tree-children {
+  padding-left: 14px;
+  border-left: 1px solid var(--border);
+  margin-left: 12px;
+}
+
+/* ── Files ─────────────────────────────────── */
+.tree-file {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+  border-left: 2px solid transparent;
+}
+
+.tree-file:hover {
+  background: var(--surface2);
+  color: var(--text);
+}
+
+.tree-file.active {
+  background: rgba(99,102,241,0.12);
+  border-left-color: var(--accent);
+}
+
+.file-icon {
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.file-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tree-file.active .file-name,
+.tree-file:hover .file-name {
+  color: var(--text);
+}

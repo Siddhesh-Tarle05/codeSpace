@@ -10,6 +10,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-http-version: "1.1"
     nginx.ingress.kubernetes.io/affinity: "cookie"
     nginx.ingress.kubernetes.io/session-cookie-name: "route"
+    # configuration-snippet removed — websocket-services handles Upgrade/Connection headers
   labels:
     app.kubernetes.io/name: codespace-ingress
 spec:
@@ -33,6 +34,16 @@ spec:
           service:
             name: ai-service
             port: 
+              number: 80
+
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: frontend-service
+            port:
               number: 80
 
 
