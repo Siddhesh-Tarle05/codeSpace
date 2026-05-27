@@ -79,7 +79,7 @@ export default function PreviewPanel({ previewUrl, showToast }) {
           ref={frameRef}
           className={`preview-frame ${loaded ? 'visible' : ''}`}
           onLoad={handleLoad}
-          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
+          referrerPolicy="no-referrer"
           title="Sandbox Preview"
         />
       </div>

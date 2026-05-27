@@ -62,7 +62,7 @@ export default function ChatPanel({ sandboxId, showToast }) {
     setStatus('🤖 FrontendForge is thinking…')
 
     try {
-      const res = await fetch('/api/ai/invoke', {
+      const res = await fetch('/api/ai/agent/invoke', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: msg, projectId: sandboxId }),

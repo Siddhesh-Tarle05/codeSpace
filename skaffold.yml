@@ -69,8 +69,6 @@ manifests:
   rawYaml:
     - K8s/ai-deployment.yml
     - K8s/ai-service.yml
-    - K8s/frontend-deployment.yml
-    - K8s/frontend-service.yml
     - K8s/router-deployment.yml
     - K8s/router-service.yml
     - K8s/sandbox-deployment.yml

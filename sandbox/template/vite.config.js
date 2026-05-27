@@ -9,16 +9,15 @@ export default defineConfig({
     port: 5173,
     allowedHosts: true,
 
-    // ✅ IMPORTANT: correct HMR for reverse proxy / ingress setup
-    hmr: {
-      protocol: 'ws',
-      clientPort: 80,   // must match ingress port, not Vite's internal port (5173)
-    },
+    // ✅ HMR disabled — the AI agent writes files directly and the frontend
+    //    triggers iframe refreshes manually. Vite's HMR WebSocket reconnects
+    //    through the ingress proxy cause full page reloads inside the iframe.
+    hmr: false,
 
-    // ❌ disable polling (it was causing reload loops)
+    // Disable file watching too — agent rewrites files, preview is refreshed manually
     watch: {
       usePolling: false,
-      ignored: ['**/node_modules/**']
+      ignored: ['**/*']
     }
   }
 })
