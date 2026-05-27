@@ -1,0 +1,82 @@
+apiVersion: skaffold/v4beta13
+kind: Config
+
+# ── Build ──────────────────────────────────────────
+build:
+  artifacts:
+    - image: ai-orc
+      context: ai-orc      # build context = ./core folder
+      docker:
+        dockerfile: dockerfile
+      sync:
+        infer:
+          - "/src/**"
+
+    - image: agent
+      context: sandbox/agent
+      docker:
+        dockerfile: dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: /app
+          - src: '**/*.json'
+            dest: /app
+
+    - image: router
+      context: sandbox/router
+      docker:
+        dockerfile: dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: /app
+          - src: '**/*.json'
+            dest: /app
+
+
+    - image: sandboximage
+      context: sandbox/server
+      docker:
+        dockerfile: dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: /app
+          - src: '**/*.json'
+            dest: /app    
+
+    - image: template
+      context: sandbox/template
+      docker:
+        dockerfile: dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: /app
+          - src: '**/*.json'
+            dest: /app    
+
+# ── Manifests ──────────────────────────────────────
+manifests:
+  rawYaml:
+    - K8s/ai-deployment.yml
+    - K8s/ai-service.yml
+    - K8s/router-deployment.yml
+    - K8s/router-service.yml
+    - K8s/sandbox-deployment.yml
+    - K8s/sandbox-service.yml
+    - K8s/rbac.yml
+    - K8s/ingress.yml
+
+
+# ── Port Forwarding ────────────────────────────────
+# portForward:
+#   - resourceType: service
+#     resourceName: core-service
+#     port: 80
+#     localPort: 3000
+#   - resourceType: service
+#     resourceName: notification-service
+#     port: 80
+#     localPort: 4000

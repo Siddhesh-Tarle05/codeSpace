@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  routerdeploy
+  labels:
+    name:  router
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app:  router
+  template:
+    metadata:
+      labels:
+        app:  router
+    spec:
+      containers:
+      - image:  router
+        name:  router-image
+        resources:
+          limits:
+            cpu: "20m"
+            memory: "55Mi"
+          requests:
+            cpu: "20m"
+            memory: "55Mi"    
+        ports:
+        - containerPort:  3000
+          name:  router-port

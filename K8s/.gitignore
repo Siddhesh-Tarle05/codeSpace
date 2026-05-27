@@ -1,0 +1,22 @@
+# Kubernetes secrets and sensitive files
+secrets/
+*.secret
+*.key
+*.pem
+*.cert
+
+# Environment-specific configs
+kustomization.yaml.local
+kustomization.yaml.prod
+kustomization.yaml.dev
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

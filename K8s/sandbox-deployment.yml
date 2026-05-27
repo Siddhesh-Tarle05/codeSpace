@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  sandboxdeploy  #deployment name
+  labels:
+    app:  sandbox #label
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app:  sandbox  #label 
+  template:
+    metadata:
+      labels:
+        app:  sandbox  #label
+    spec:
+      serviceAccountName: resource-manager
+      containers:
+      - image:  sandboximage  #image name
+        imagePullPolicy: IfNotPresent
+        name: main-sandbox-container    
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "400Mi"
+          requests:
+            cpu: "250m"
+            memory: "200Mi"   
+        ports:
+        - containerPort:  3000
+          name:  sandboxport
